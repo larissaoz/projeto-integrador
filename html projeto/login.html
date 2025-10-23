@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - ImmunoTrack</title>
+    
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body class="body-split"> 
+    
+    <div class="login-container">
+        
+        <header class="header-split">
+            <nav class="nav-split">
+                <a href="paginainicial.html">Início</a>
+                <a href="cadastro.html">Cadastre-se</a>
+            </nav>
+        </header>
+
+        <div class="form-wrapper">
+            <h2 class="welcome-message">
+                ImmunoTrack: Sua Proteção ao Seu Alcance.
+            </h2>
+            
+            <form action="/login" method="POST" class="login-form">
+                
+                <p class="introducao-form">Faça login e tenha acesso imediato a todas as suas doses, locais de vacinação e agendamentos.</p>
+
+                <div class="campo-form">
+                    <label for="identificador">CPF:</label>
+                    <input type="text" id="identificador" name="identificador" placeholder="Seu CPF" required>
+                </div>
+                
+                <div class="campo-form">
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" name="senha" placeholder="Sua senha" required>
+                </div>
+                
+                <div class="opcoes-login">
+                    <div class="checkbox-form">
+                        <input type="checkbox" id="lembrar-senha" name="lembrar-senha">
+                        <label for="lembrar-senha">Lembrar minha senha</label>
+                    </div>
+                    <a href="esquecisenha.html" class="link-secundario">Esqueci minha senha</a>
+                </div>
+                
+                <button type="submit" class="botao botao-acessar botao-sign-in">Entrar</button>
+            </form>
+            
+            <div class="links-adicionais">
+                 <p>Ainda não tem uma carteira virtual? Junte-se ao ImmunoTrack e diga adeus à caderneta de papel. <a href="cadastro.html" class="link-cadastro">Cadastre-se</a></p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="visual-area">
+        <h1 class="visual-title">Sua Saúde Digital.</h1>
+        <p class="visual-slogan">ImmunoTrack: A vacinação moderna ao seu alcance.</p>
+        <div class="social-icons">
+             <a href="#" class="icon-link">V</a>
+             <a href="#" class="icon-link">F</a>
+             <a href="#" class="icon-link">I</a>
+        </div>
+    </div>
+    
+</body>
+</html>
