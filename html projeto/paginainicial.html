@@ -5,49 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ImmunoTrack - Carteira de Vacinação Virtual</title>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <link rel="stylesheet" href="style.css"> 
-    </head>
-<body>
-    <header>
-        <div class="container">
-            <h1>ImmunoTrack - Sistema de Carteira de Vacinação Virtual</h1>
-            <nav>
-                <a href="login.html">Login</a>
-                <a href="cadastro.html">Cadastre-se</a>
-                <a href="#informacoes">Informações</a>
+</head>
+<body class="body-login"> <header class="main-header"> <div class="container main-nav-container"> <h1>ImmunoTrack</h1> <nav>
+                <a href="login.html" class="link-nav">Login</a>
+                <a href="cadastro.html" class="link-nav link-cadastro-destaque">Cadastre-se</a> <a href="#informacoes" class="link-nav">Informações</a>
             </nav>
         </div>
     </header>
-    <main class="container">
-        <section id="proposta">
-            <h2>Sua Saúde Imunológica na Era Digital. Nunca mais perca uma vacina!</h2>
-            <p>Diga adeus à caderneta de vacinação de papel. Gerencie seu histórico e o de sua família de forma fácil, centralizada e online.</p>
+    
+    <main class="container main-content">
+        <section id="proposta" class="section-principal">
+            <h2 class="titulo-destaque-roxo">Sua Saúde Imunológica na Era Digital. Nunca mais perca uma vacina!</h2>
+            <p class="introducao-principal">Diga adeus à caderneta de vacinação de papel. Gerencie seu histórico e o de sua família de forma fácil, centralizada e online.</p>
             
-            <p><strong>Acesse sua carteira ou Cadastre-se!</strong></p>
-            <a href="login.html" class="botao botao-acessar">
-                ACESSAR MINHA CARTEIRA
-            </a>
-            <a href="cadastro.html" class="botao botao-criar">
-                CRIAR MINHA CARTEIRA VIRTUAL
-            </a>
+            <div class="botoes-acao">
+                <a href="login.html" class="botao botao-acessar botao-centralizado">
+                    ACESSAR MINHA CARTEIRA
+                </a>
+                <a href="cadastro.html" class="botao botao-criar botao-centralizado">
+                    CRIAR MINHA CARTEIRA VIRTUAL
+                </a>
+            </div>
         </section>
 
-        <section id="funcionalidades">
-            <h2>O que o ImmunoTrack oferece?</h2>
+        <section id="funcionalidades" class="section-secundaria">
+            <h2 class="titulo-secao">O que o ImmunoTrack oferece?</h2>
             
             <div class="funcionalidades-grid">
                 
                 <div class="funcionalidade-item">
+                    <i class="fas fa-shield-alt icone-funcionalidade"></i>
                     <h3>Carteira Virtual Segura</h3>
                     <p>Mantenha seu histórico vacinal sempre acessível e livre de perdas ou rasuras. Acompanhe suas doses e as de seus dependentes em um só lugar.</p>
                 </div>
                 
                 <div class="funcionalidade-item">
+                    <i class="fas fa-map-marker-alt icone-funcionalidade"></i>
                     <h3>Consulta de Postos</h3>
                     <p>Encontre o posto de saúde mais próximo de você e verifique a disponibilidade de vacinas em tempo real.</p>
                 </div>
                 
                 <div class="funcionalidade-item">
+                    <i class="fas fa-calendar-check icone-funcionalidade"></i>
                     <h3>Agendamento Online</h3>
                     <p>Simplifique sua vida. Agende suas próximas vacinas e as de reforço sem complicações, reduzindo o risco de esquecimento.</p>
                 </div>
@@ -61,17 +63,19 @@
 
         </section>
 
-        <section id="informacoes">
-            <h2>Informações Importantes</h2>
-            <p>Mantenha-se informado sobre o calendário nacional e a importância das vacinas.</p>
-            <a href="https://www.gov.br/saude/pt-br/campanhas-da-saude/vacinacao" class="botao botao-secundario">
-                Ver Calendário Nacional
-            </a>
-        </section>
+        <section id="informacoes" class="section-secundaria">
+    <div class="informacoes-card-acao"> <h2 class="titulo-acao">Informações Importantes</h2> <p>Mantenha-se informado sobre o calendário nacional e a importância das vacinas.</p>
+        
+        <a href="https://www.gov.br/saude/pt-br/campanhas-da-saude/vacinacao" 
+           class="botao botao-full-width botao-acessar botao-link-externo">
+            <i class="fas fa-external-link-alt"></i> Ver Calendário Nacional
+        </a>
+    </div>
+</section>
         
     </main>
-    <footer>
-        <p>&copy; 2025 Carteira de Vacinação Virtual</p>
+    <footer class="main-footer">
+        <p>&copy; 2025 ImmunoTrack - Carteira de Vacinação Virtual. Todos os direitos reservados.</p>
     </footer>
 </body>
 </html>

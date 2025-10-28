@@ -1,15 +1,27 @@
-/* 1. Reset Básico e Fontes (O @import deve ficar aqui, no topo) */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+/* ================================================= */
+/* 1. VARIÁVEIS E ESTILOS GERAIS */
+/* ================================================= */
 
 :root {
-    /* NOVO TEMA DE CORES (Roxo, Verde, Lilás Acinzentado) */
-    --cor-principal: #6A1B9A;      /* Roxo Escuro (Tema Principal/Título) */
-    --cor-secundaria: #4CAF50;    /* Verde (Ação/Destaque Positivo) */
-    --cor-fundo: #e7dfe5;          /* Lilás Acinzentado MUITO Claro (Fundo Principal) */
-    --cor-fundo-card: #FFFFFF;    /* Branco Puro (Fundo dos Cards/Seções) */
-    --cor-texto-principal: #343a40; /* Texto Escuro */
-    --cor-header-fundo: #FFFFFF;
-    --sombra-leve: 0 4px 12px rgba(0, 0, 0, 0.08);
+    /* Paleta de Cores (Roxo, Sofisticação e Tecnologia) */
+    --cor-fundo-principal: #1a1a1a; /* Fundo bem escuro */
+    --cor-card: #2c2c2c; /* Fundo do card/formulário ligeiramente mais claro que o fundo */
+    --cor-texto-principal: #f0f0f0; /* Texto claro para contraste */
+    --cor-texto-secundario: #a0a0a0; /* Texto para informações adicionais */
+    --cor-borda-input: #444; /* Borda dos inputs */
+    --cor-placeholder: #777; /* Cor do placeholder nos inputs */
+
+    /* Gradientes ROXOS (para botões e outros elementos de destaque) */
+    --cor-roxo-claro: #9b59b6;
+    --cor-roxo-escuro: #8e44ad;
+    --gradiente-botao-login: linear-gradient(to right, #9b59b6, #8e44ad); /* Roxo Gradiente */
+    --gradiente-botao-hover: linear-gradient(to right, #8e44ad, #7e3a9a);
+
+    /* Cantos Arredondados e Sombras */
+    --borda-radius-grande: 15px;
+    --borda-radius-pequeno: 8px;
+    --sombra-card: 0 8px 25px rgba(0, 0, 0, 0.4);
+    --sombra-botao: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 * {
@@ -19,527 +31,638 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: var(--cor-fundo); /* Lilás Acinzentado Claro */
-    color: var(--cor-texto-principal);
+    font-family: 'Poppins', sans-serif;
     line-height: 1.6;
+    color: var(--cor-texto-principal);
 }
 
-/* 2. Layout Principal */
+/* ================================================= */
+/* 2. ESTILO DA TELA DE LOGIN (BODY E HEADER) */
+/* ================================================= */
+
+.body-login {
+    background-color: var(--cor-fundo-principal);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* CORREÇÃO AQUI: Removemos 'overflow: hidden;' para permitir a rolagem na tela de Cadastro */
+    position: relative;
+}
+
+/* Decoração no canto superior direito (com cores Roxas e Azuis) */
+.body-login::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 200px;
+    height: 200px;
+    /* Roxo */
+    background: radial-gradient(circle, rgba(155,89,182,0.5) 0%, rgba(142,68,173,0) 70%);
+    border-radius: 50%;
+    filter: blur(40px);
+    z-index: 0;
+}
+.body-login::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 100px;
+    height: 100px;
+    /* Azul (para contraste com o roxo) */
+    background: radial-gradient(circle, rgba(52, 152, 219,0.5) 0%, rgba(52, 152, 219,0) 70%);
+    border-radius: 50%;
+    filter: blur(30px);
+    z-index: 0;
+}
+
+
+.header-login {
+    background-color: transparent;
+    color: var(--cor-texto-principal);
+    padding: 30px 20px 0;
+    text-align: left;
+    position: relative;
+    z-index: 1;
+}
+
+.titulo-login {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.introducao-header { 
+    font-size: 1rem;
+    color: var(--cor-texto-secundario);
+    margin-bottom: 20px;
+}
+
+.botao-voltar {
+    display: none;
+}
+
+/* ================================================= */
+/* 3. ESTILO DO FORMULÁRIO (CARD) */
+/* ================================================= */
+
+.container-login {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    /* CORREÇÃO AQUI: Mudamos de 'center' para 'flex-start' para que o conteúdo longo comece no topo e possa rolar */
+    align-items: flex-start;
+    padding: 20px;
+    z-index: 1;
+}
+
+.card-login {
+    background-color: var(--cor-card);
+    padding: 40px 30px;
+    border-radius: var(--borda-radius-grande);
+    box-shadow: var(--sombra-card);
+    width: 100%;
+    max-width: 450px;
+    /* margin-top: -80px; <-- Removido para o cadastro e login com o título no card */
+}
+
+/* NOVO ESTILO PARA O TÍTULO DENTRO DO CARD (usado no login) */
+.titulo-card-login {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--cor-texto-principal);
+    text-align: center;
+    margin-bottom: 10px;
+    text-shadow: 0 0 5px rgba(155, 89, 182, 0.2);
+}
+/* FIM DO NOVO ESTILO */
+
+.introducao-form {
+    color: var(--cor-texto-secundario);
+    margin-bottom: 30px;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* ================================================= */
+/* 4. ESTILO DOS CAMPOS DE INPUT E RÓTULOS E ÍCONES */
+/* ================================================= */
+
+.campo-form {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.campo-form label {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+}
+
+.campo-form input[type="text"],
+.campo-form input[type="password"],
+.campo-form input[type="email"],
+.campo-form input[type="tel"] { /* Adicionado tipos de cadastro */
+    width: 100%;
+    padding: 15px 20px;
+    padding-right: 50px;
+    border: 1px solid var(--cor-borda-input);
+    border-radius: var(--borda-radius-pequeno);
+    background-color: var(--cor-card);
+    color: var(--cor-texto-principal);
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.campo-form input::placeholder {
+    color: var(--cor-placeholder);
+}
+
+.campo-form input:focus {
+    border-color: var(--cor-roxo-claro); /* Foco roxo */
+    box-shadow: 0 0 0 2px rgba(155, 89, 182, 0.3); /* Sombra de foco roxa */
+    outline: none;
+}
+
+/* Estilo Base para os Ícones nos Inputs */
+.icone-input {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--cor-placeholder);
+    font-size: 1.2rem;
+    z-index: 2;
+}
+
+/* Ajuste Específico para o Ícone de Toggle de Senha */
+.icone-toggle-senha,
+.icone-toggle-senha-cadastro { /* Adicionado ícone de toggle para cadastro */
+    cursor: pointer;
+    transition: color 0.2s ease-in-out; 
+}
+
+.icone-toggle-senha:hover,
+.icone-toggle-senha-cadastro:hover {
+    color: var(--cor-roxo-claro); /* Destaque roxo ao passar o mouse */
+}
+
+/* ================================================= */
+/* 5. CHECKBOX E LINKS ADICIONAIS */
+/* ================================================= */
+
+.checkbox-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    font-size: 0.9rem;
+    color: var(--cor-texto-secundario);
+}
+
+.checkbox-form input[type="checkbox"] {
+    margin-right: 10px;
+    accent-color: var(--cor-roxo-claro); /* Cor do checkbox roxa */
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+/* Links em Roxo */
+.link-secundario,
+.link-cadastro {
+    color: var(--cor-roxo-claro); /* Cor roxa */
+    text-decoration: none;
+    transition: color 0.3s;
+    font-weight: 500;
+}
+
+.link-secundario:hover,
+.link-cadastro:hover {
+    color: var(--cor-roxo-escuro); /* Um tom mais escuro no hover */
+    text-decoration: underline;
+}
+
+/* Ajuste nos links adicionais (usado para o link Cadastre-se) */
+.links-adicionais {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--cor-texto-secundario);
+}
+
+.links-adicionais p {
+    margin-bottom: 10px;
+}
+
+/* ================================================= */
+/* 6. ESTILO DOS BOTÕES */
+/* ================================================= */
+
+.botao {
+    display: block;
+    padding: 15px 25px;
+    border: none;
+    border-radius: var(--borda-radius-grande);
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: var(--sombra-botao);
+    color: var(--cor-texto-principal);
+}
+
+.botao-acessar {
+    background: var(--gradiente-botao-login); /* Gradiente Roxo como fundo */
+    margin-bottom: 20px;
+}
+
+.botao-acessar:hover {
+    background: var(--gradiente-botao-hover); /* Gradiente Roxo mais escuro no hover */
+    transform: translateY(-2px);
+}
+
+.botao-acessar:active {
+    transform: translateY(0);
+}
+
+/* Estilo para centralizar o botão (usado no login e cadastro) */
+.botao-centralizado {
+    width: auto;
+    min-width: 200px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* ================================================= */
+/* 7. RESPONSIVIDADE (Ajustes para telas menores) */
+/* ================================================= */
+
+@media (max-width: 600px) {
+    .header-login {
+        padding: 20px 15px 0;
+    }
+
+    .titulo-login {
+        font-size: 1.5rem;
+    }
+
+    .card-login {
+        padding: 30px 20px;
+        border-radius: var(--borda-radius-grande);
+        box-shadow: none;
+    }
+
+    .body-login::before,
+    .body-login::after {
+        top: -20px;
+        right: -20px;
+        width: 150px;
+        height: 150px;
+        filter: blur(25px);
+    }
+    
+    .checkbox-form {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
+
+/* ================================================= */
+/* 8. ESTILOS ESPECÍFICOS DA TELA DE CADASTRO */
+/* ================================================= */
+
+/* Centraliza o card na tela, mas permite rolagem vertical (importante para formulários longos) */
+.card-cadastro {
+    max-width: 550px; /* Ligeiramente mais largo que o login para acomodar mais campos */
+    margin-top: 20px; /* Mais espaço no topo */
+    margin-bottom: 50px; /* Espaço na base para formulários longos */
+    align-self: flex-start; 
+}
+
+/* Títulos de Seção (Dados Pessoais, Contato) */
+.titulo-secao-cadastro {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--cor-roxo-claro);
+    margin-top: 35px;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid var(--cor-borda-input); /* Linha sutil abaixo do título */
+    text-align: left;
+}
+
+/* Estilo para o campo de seleção (select) */
+.campo-form select {
+    width: 100%;
+    padding: 15px 20px;
+    padding-right: 50px;
+    border: 1px solid var(--cor-borda-input);
+    border-radius: var(--borda-radius-pequeno);
+    background-color: var(--cor-card);
+    color: var(--cor-texto-principal);
+    font-size: 1rem;
+    -webkit-appearance: none; /* Remove estilo padrão do navegador */
+    -moz-appearance: none;
+    appearance: none; /* Remove estilo padrão do navegador */
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.campo-form select:focus {
+    border-color: var(--cor-roxo-claro);
+    box-shadow: 0 0 0 2px rgba(155, 89, 182, 0.3);
+    outline: none;
+}
+
+
+/* Campo de Data: ajusta a cor do texto do input[type="date"] no tema escuro */
+.campo-data input[type="date"] {
+    color: var(--cor-texto-principal);
+}
+
+.campo-data input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1); /* Inverte a cor do ícone do calendário para ser visível no fundo escuro */
+    cursor: pointer;
+}
+
+/* ================================================= */
+/* 9. ESTILOS DA PÁGINA INICIAL (HOME) */
+/* ================================================= */
+
+/* Estilo para garantir a largura máxima do conteúdo */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-/* 3. Estilização do Header e Navegação */
-header {
-    background-color: var(--cor-header-fundo);
-    box-shadow: var(--sombra-leve);
+/* 9.1. Header e Navegação */
+.main-header {
+    background-color: var(--cor-card); /* Cor do card, levemente mais claro que o fundo */
     padding: 15px 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
-header .container {
+.main-nav-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
 }
 
-header h1 {
+.main-header h1 {
     font-size: 1.5rem;
-    color: var(--cor-principal); /* Roxo no título */
+    color: var(--cor-roxo-claro); /* Título em destaque roxo */
     font-weight: 700;
 }
 
-nav a {
-    color: var(--cor-texto-principal);
+.link-nav {
+    color: var(--cor-texto-secundario);
     text-decoration: none;
     margin-left: 20px;
-    font-weight: 500;
-    transition: color 0.3s;
+    padding: 8px 12px;
+    border-radius: var(--borda-radius-pequeno);
+    transition: color 0.3s, background-color 0.3s;
 }
 
-nav a:hover {
-    color: var(--cor-principal);
+.link-nav:hover {
+    color: var(--cor-roxo-claro);
+    background-color: rgba(142, 68, 173, 0.1);
 }
 
-/* 4. Estilização da Seção Principal (Proposta) */
-#proposta {
-    background-color: var(--cor-fundo-card); /* Branco */
-    padding: 60px 20px;
-    text-align: center;
+/* 9.2. Botões de Ação na Home */
+.botoes-acao {
+    display: flex;
+    flex-direction: row; /* ⬅️ MUDANÇA ESSENCIAL: Coloca os botões lado a lado */
+    justify-content: center; /* Centraliza os botões como um grupo */
+    align-items: center;
+    gap: 20px; /* Aumenta o espaçamento entre eles */
     margin-top: 30px;
-    border-radius: 10px;
-    box-shadow: var(--sombra-leve);
-    border-bottom: 4px solid var(--cor-principal); 
-}
-
-#proposta h2 {
-    font-size: 2.2rem;
-    color: var(--cor-principal); /* Roxo */
-    margin-bottom: 20px;
-}
-
-#proposta p {
-    font-size: 1.1rem;
-    margin-bottom: 25px;
-    max-width: 700px;
+    max-width: 650px; /* ⬅️ AJUSTE AQUI: Aumenta a largura máxima para caber os dois botões */
     margin-left: auto;
     margin-right: auto;
+    flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
 }
 
-#proposta p strong {
-    font-size: 1.3rem;
-    color: var(--cor-texto-principal);
-}
-
-/* 5. Estilização dos Botões de Ação */
-.botao {
-    display: inline-block;
-    padding: 15px 30px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 700;
-    text-transform: uppercase;
-    margin: 10px 10px;
-    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Botão de Acesso (Roxo) */
-.botao-acessar {
-    background-color: var(--cor-principal); /* Roxo */
-    color: white;
-}
-
-.botao-acessar:hover {
-    background-color: #550080; /* Roxo mais escuro */
-    transform: translateY(-2px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-}
-
-/* Botão de Cadastro (Verde) */
+/* Estilo para o botão de criar carteira (roxo sólido, como um secundário) */
 .botao-criar {
-    background-color: var(--cor-secundaria); /* Verde */
-    color: white;
+    background-color: var(--cor-roxo-escuro); /* ⬅️ Fundo sólido escuro */
+    color: var(--cor-texto-principal);
+    transition: all 0.3s ease; /* ⬅️ Garante a transição de hover */
+    box-shadow: var(--sombra-botao); /* ⬅️ Garante a sombra de profundidade */
 }
 
 .botao-criar:hover {
-    background-color: #388E3C; /* Verde mais escuro */
-    transform: translateY(-2px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    background-color: var(--cor-roxo-claro); /* ⬅️ Roxo mais claro no hover */
+    transform: translateY(-2px); /* ⬅️ Efeito de "levantar" */
 }
 
-/* 6. Estilização das Funcionalidades */
-#funcionalidades {
-    padding: 40px 0;
+
+/* Estilo para o botão secundário (transparente com borda roxa) */
+.botao-secundario {
+    background: transparent;
+    border: 2px solid var(--cor-roxo-claro);
+    color: var(--cor-roxo-claro);
+    margin-top: 20px;
+}
+
+.botao-secundario:hover {
+    background-color: rgba(155, 89, 182, 0.1);
+    color: var(--cor-texto-principal);
+    transform: translateY(-2px);
+}
+
+/* 9.3. Seções e Proposta Principal */
+.section-principal {
+    text-align: center;
+    padding: 80px 0;
+    background: radial-gradient(circle at top, rgba(142, 68, 173, 0.1) 0%, rgba(26, 26, 26, 0) 60%);
+}
+
+.titulo-destaque-roxo {
+    font-size: 2.5rem;
+    color: var(--cor-roxo-claro);
+    margin-bottom: 20px;
+    font-weight: 800;
+    text-shadow: 0 0 10px rgba(155, 89, 182, 0.5);
+}
+
+.introducao-principal {
+    font-size: 1.1rem;
+    color: var(--cor-texto-secundario);
+    margin-bottom: 30px;
+}
+
+.section-secundaria {
+    padding: 60px 0;
+    border-top: 1px solid var(--cor-borda-input);
+}
+
+.titulo-secao {
+    /* ... (Estilos existentes) ... */
+    color: var(--cor-roxo-claro); /* Aplicando o roxo claro aos títulos secundários */
+    text-align: center;
+    margin-bottom: 40px;
+    font-weight: 700;
+}
+
+/* 9.4. Grid de Funcionalidades */
+.funcionalidades-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
     text-align: center;
 }
 
-#funcionalidades h2 {
-    font-size: 2rem;
-    margin-bottom: 40px;
-    color: var(--cor-texto-principal);
-    border-bottom: 2px solid var(--cor-principal);
-    display: inline-block;
-    padding-bottom: 5px;
-}
-
-.funcionalidades-grid {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
 .funcionalidade-item {
-    background-color: var(--cor-fundo-card); /* Branco */
+    background-color: var(--cor-card);
     padding: 30px;
-    border-radius: 10px;
-    box-shadow: var(--sombra-leve);
-    margin-bottom: 20px;
+    border-radius: var(--borda-radius-grande);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-top: 4px solid var(--cor-roxo-claro);
     transition: transform 0.3s;
-    flex-basis: calc(33.33% - 14px); /* Para 3 colunas em telas grandes */
-    min-width: 250px;
 }
 
 .funcionalidade-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 20px rgba(155, 89, 182, 0.3);
 }
 
-.funcionalidade-item h3 {
-    color: var(--cor-principal); /* Roxo */
-    font-size: 1.4rem;
+.icone-funcionalidade {
+    font-size: 3rem;
+    color: var(--cor-roxo-claro);
     margin-bottom: 15px;
 }
 
+.funcionalidade-item h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: var(--cor-texto-principal);
+}
+
+.funcionalidade-item p {
+    color: var(--cor-texto-secundario);
+}
+
+/* 9.5. Destaque Missão */
 .destaque-missao {
-    margin-top: 40px;
-    padding: 30px;
-    background-color: #cddaca; /* verde Claro para Destaque */
-    border-radius: 10px;
-    border-left: 5px solid var(--cor-principal); /* Roxo */
+    background: var(--gradiente-botao-login); /* Gradiente roxo de fundo */
+    padding: 40px;
+    border-radius: var(--borda-radius-grande);
+    text-align: center;
+    margin: 40px 0;
+    box-shadow: var(--sombra-card);
 }
 
 .destaque-missao h3 {
-    color: var(--cor-secundaria); /* Verde para dar ênfase (contraste) */
+    font-size: 1.8rem;
+    color: var(--cor-texto-principal);
     margin-bottom: 10px;
 }
 
-/* 7. Seção Informações */
-#informacoes {
-    padding: 40px 0;
+.destaque-missao p {
+    font-size: 1.1rem;
+    color: #eee; /* Texto branco mais suave */
+}
+
+/* 9.6. Footer */
+.main-footer {
+    background-color: var(--cor-card);
     text-align: center;
+    padding: 20px 0;
+    border-top: 1px solid var(--cor-borda-input);
+    color: var(--cor-texto-secundario);
+    font-size: 0.85rem;
 }
 
-#informacoes h2 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-}
+/* ================================================= */
+/* 9. ESTILOS DA PÁGINA INICIAL (HOME) */
+/* ================================================= */
+/* ... (Seções 9.1 a 9.6) ... */
 
-/* Botão Secundário (Cinza/Neutro) */
-.botao-secundario {
-    background-color: #9E9E9E; /* Cinza Neutro */
-    color: white;
-    margin-top: 15px;
-}
 
-.botao-secundario:hover {
-    background-color: #757575;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-}
-
-/* 8. Footer */
-footer {
-    background-color: var(--cor-principal); /* Roxo no Footer */
-    color: white;
-    padding: 15px 0;
-    margin-top: 40px;
-}
-
-footer p {
-    font-size: 0.9rem;
-    text-align: center;
-}
-
-/* 9. Responsividade (Layout para telas menores) */
-@media (min-width: 768px) {
-    /* Alinha as funcionalidades em 3 colunas */
-    .funcionalidades-grid {
-        flex-wrap: nowrap;
-    }
-}
-
-@media (max-width: 767px) {
-    /* Ajustes para celular */
-    header .container {
+/* 9.7. Responsividade da Home */
+@media (max-width: 768px) {
+    /* Ajuste para o Header: empilha itens da navegação */
+    .main-nav-container {
         flex-direction: column;
     }
-
-    header h1 {
+    .main-header h1 {
         margin-bottom: 15px;
     }
-
-    nav a {
-        margin-left: 10px;
-        margin-right: 10px;
+    .main-header nav a {
+        margin: 0 10px;
     }
-
-    #proposta h2 {
+    
+    /* Ajuste do Título Principal */
+    .titulo-destaque-roxo {
+        font-size: 2rem;
+    }
+    
+    /* Ajuste do Padding da Seção Principal */
+    .section-principal {
+        padding: 50px 0;
+    }
+    
+    /* Ajuste do Título da Seção Secundária */
+    .titulo-secao {
         font-size: 1.6rem;
     }
-
-    .funcionalidade-item {
-        flex-basis: 100%; /* Ocupa a largura total no celular */
-    }
-}
-/* ========================================================= */
-/* 10. ESTILOS DE LOGIN (SPLIT SCREEN - TEMA ROXO/VERDE) */
-/* ========================================================= */
-
-:root {
-    /* MANTENHA AS CORES DA PÁGINA INICIAL */
-    --cor-principal: #6A1B9A;      /* Roxo Escuro */
-    --cor-secundaria: #4CAF50;    /* Verde (Ação) */
-    --cor-fundo: #b4a6cf;          /* Lilás Acinzentado MUITO Claro */
-    --cor-fundo-card: #FFFFFF;    /* Branco Puro */
-    --cor-texto-principal: #343a40; 
-    --sombra-leve: 0 4px 12px rgba(0, 0, 0, 0.08);
-
-    /* NOVAS CORES PARA O TEMA ESCURO DO SPLIT */
-    --cor-fundo-escuro: #1A002A; /* Roxo muito escuro */
-    --cor-destaque-visual: #4CAF50; /* Verde (o mesmo da cor secundária) */
-    --cor-texto-claro: #F0F0F0; /* Quase branco */
-    --cor-placeholder: #B0B0B0;
-}
-
-
-.body-split {
-    /* Garante que ocupe 100% da tela */
-    display: flex;
-    min-height: 100vh;
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
-}
-
-/* Área do Formulário (Lado Esquerdo/Roxo Escuro) */
-.login-container {
-    flex: 1;
-    background-color: var(--cor-fundo-escuro); 
-    color: var(--cor-texto-claro);
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-}
-
-.header-split {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 50px;
-}
-
-.botao-voltar {
-    color: var(--cor-destaque-visual); /* Verde */
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 1.2rem;
-}
-
-.nav-split a {
-    color: var(--cor-texto-claro);
-    text-decoration: none;
-    margin-left: 25px;
-    opacity: 0.8;
-    transition: opacity 0.2s;
-}
-
-.nav-split a:hover {
-    opacity: 1;
-    color: var(--cor-destaque-visual);
-}
-
-.form-wrapper {
-    max-width: 400px;
-    margin: auto; /* Centraliza o formulário vertical e horizontalmente */
-    width: 100%;
-}
-
-.welcome-message {
-    font-size: 2.2rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-    color: var(--cor-destaque-visual); /* Verde no Bem-Vindo */
-    text-transform: uppercase;
-}
-
-.sub-message {
-    display: block;
-    font-size: 1rem;
-    font-weight: 400;
-    color: var(--cor-texto-claro);
-    margin-top: 5px;
-}
-
-.sub-message a {
-    color: var(--cor-destaque-visual);
-    text-decoration: none;
-    font-weight: 700;
-}
-
-.login-form {
-    margin-top: 40px;
-}
-
-/* Campos do Formulário (Input Fields) */
-.campo-form {
-    margin-bottom: 30px;
-}
-
-.campo-form label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 500;
-    color: var(--cor-texto-claro);
-    font-size: 0.9rem;
-    opacity: 0.7;
-    text-transform: uppercase;
-}
-
-.campo-form input[type="text"],
-.campo-form input[type="password"] {
-    width: 100%;
-    padding: 15px 12px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 5px;
-    font-size: 1rem;
-    background-color: transparent; /* Fundo transparente */
-    color: var(--cor-texto-claro);
-    transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.campo-form input::placeholder {
-    color: var(--cor-placeholder);
-    opacity: 0.7;
-}
-
-.campo-form input:focus {
-    border-color: var(--cor-destaque-visual); /* Borda verde no foco */
-    box-shadow: 0 0 0 1px var(--cor-destaque-visual);
-    outline: none;
-}
-
-/* Opções (Lembrar/Esqueci Senha) */
-.opcoes-login {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-    font-size: 0.9rem;
-}
-
-.checkbox-form {
-    color: var(--cor-texto-claro);
-    opacity: 0.8;
-}
-
-.link-secundario {
-    color: var(--cor-texto-claro);
-    text-decoration: none;
-    opacity: 0.8;
-}
-
-.link-secundario:hover {
-    color: var(--cor-destaque-visual);
-    text-decoration: underline;
-}
-
-/* Botão de Entrar */
-.botao-sign-in {
-    /* Estilo do botão de ACESSO (Roxo) da página inicial, ajustado para o fundo escuro */
-    width: 100%;
-    padding: 15px 30px;
-    background-color: var(--cor-principal); /* Roxo */
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 1.1rem;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-.botao-sign-in:hover {
-    background-color: #550080; /* Roxo mais escuro */
-}
-
-
-/* Área Visual (Lado Direito/Lilás Acinzentado) */
-.visual-area {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-top: 60px; /* Adiciona um espaço no topo para afastar a frase da borda */
     
-    align-items: center;
-    background-color: var(--cor-fundo); /* Lilás Acinzentado */
-    text-align: center;
-    position: relative;
-    padding: 40px;
-
-    /* --- ADIÇÃO DA IMAGEM DA MÉDICA AQUI --- */
-    background-image: url('medica.png'); /* Mude 'medica-cartoon.png' para o nome do seu arquivo */
-    background-size: contain; /* Ajusta a imagem para caber na área sem cortar */
-    background-repeat: no-repeat; /* Garante que a imagem não se repita */
-    background-position: center bottom; /* Centraliza horizontalmente e alinha na parte inferior */
-}
-
-.visual-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--cor-principal); /* Roxo */
-    margin-bottom: 10px;
-}
-
-.visual-slogan {
-    font-size: 1.2rem;
-    color: var(--cor-texto-principal);
-    max-width: 300px;
-}
-
-/* Ícones Sociais (Apenas para Estrutura) */
-.social-icons {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.icon-link {
-    display: block;
-    width: 40px;
-    height: 40px;
-    background-color: var(--cor-destaque-visual); /* Verde */
-    color: var(--cor-fundo-escuro); /* Roxo muito escuro */
-    border-radius: 50%;
-    text-align: center;
-    line-height: 40px;
-    font-weight: 700;
-    text-decoration: none;
-    transition: transform 0.2s;
-}
-
-.icon-link:hover {
-    transform: scale(1.1);
-}
-
-/* Responsividade para Telas Menores */
-@media (max-width: 900px) {
-    .body-split {
-        flex-direction: column;
+    /* Regra para voltar a empilhar os botões de Ação em telas pequenas */
+    .botoes-acao {
+        flex-direction: column; /* Volta para a coluna em telas menores que 768px */
+        gap: 15px;
+        max-width: 90%; /* Ajusta o máximo para telas menores */
     }
     
-    .visual-area {
-        height: 250px; /* Reduz a altura da área visual no mobile */
-        order: -1; /* Coloca a área visual acima do formulário */
+    /* Garante que os botões fiquem com a largura total no mobile (dentro do max-width: 300px) */
+    .botoes-acao .botao {
+        width: 100%; 
+        max-width: 300px; 
     }
     
-    .social-icons {
-        position: static;
-        flex-direction: row;
-        margin-top: 20px;
-        transform: none;
-    }
-    
-    .header-split {
-        margin-bottom: 30px;
-    }
-    
-    .login-container {
+    /* Ajuste do Card de Informações */
+    .informacoes-card-acao {
         padding: 30px 20px;
     }
-    
-    .welcome-message {
-        font-size: 1.8rem;
+    .informacoes-card-acao .titulo-acao {
+        font-size: 1.5rem;
     }
 }
 
-@media (max-width: 450px) {
-    .header-split {
-        flex-direction: column;
-        gap: 15px;
-    }
-    .nav-split a {
-        margin-left: 15px;
-        margin-right: 15px;
-    }
-    .visual-title {
-        font-size: 1.8rem;
-    }
+/* 9.8. ESTILO DO BOTÃO DE LINK EXTERNO */
+
+/* Faz o botão ocupar 100% da largura do card */
+.botao-link-externo {
+    display: flex; /* Permite alinhar ícone e texto */
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Ocupa toda a largura do card de ação */
+    background: var(--gradiente-botao-login); /* Gradiente roxo total */
+    padding: 18px 25px; /* Mais padding para parecer maior */
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.botao-link-externo:hover {
+    background: var(--gradiente-botao-hover);
+    transform: translateY(-2px);
+}
+
+.botao-link-externo .fas {
+    margin-right: 10px;
+}
+
+/* Removendo o estilo antigo do botão secundário para evitar conflito */
+.botao-secundario {
+    /* Removido o estilo: background: transparent; border: 2px solid var(--cor-roxo-claro); */
+    display: none; /* Desabilita se você usar o novo botao-link-externo */
 }
